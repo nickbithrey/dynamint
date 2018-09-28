@@ -10,9 +10,13 @@
 
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
-    	<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<spring-boot.version>2.0.5.RELEASE</spring-boot.version>
 	</properties>
+
+	<build>
+		<outputDirectory>target/classes</outputDirectory>
+	</build>
 
 	<dependencyManagement>
 		<dependencies>
@@ -50,12 +54,43 @@
 			<artifactId>spring-boot-autoconfigure</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			    
+			<groupId>org.springframework.security</groupId>
+			    
+			<artifactId>spring-security-oauth2-client</artifactId>
+		</dependency>
+
 		<!-- UTILITIES -->
 
 		<dependency>
 			<groupId>org.reflections</groupId>
 			<artifactId>reflections</artifactId>
 			<version>0.9.10</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>js-cookie</artifactId>
+			<version>2.1.0</version>
 		</dependency>
 
 		<!-- TEST -->
