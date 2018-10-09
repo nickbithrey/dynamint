@@ -1,4 +1,4 @@
-package org.innovation.dynamint.security;
+package org.innovation.dynamint.user;
 
 import java.security.Principal;
 import java.util.HashMap;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserRestController {
+public class UserController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserRestController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public Map<String, Object> user(Principal principal) {
