@@ -1,5 +1,7 @@
 package org.innovation.dynamint.security;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +19,9 @@ public class WebSecurityNonSSOConfig extends WebSecurityConfigurerAdapter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebSecurityNonSSOConfig.class);
 
-    public WebSecurityNonSSOConfig() {
-        LOGGER.warn("Initializing in unsecured mode as profile '{}' is not enabled", PROFILE);
+    @PostConstruct
+    public void notification() {
+        LOGGER.warn("Initialized in unsecured mode as profile '{}' is not enabled", PROFILE);
     }
 
     @Override

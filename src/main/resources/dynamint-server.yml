@@ -11,3 +11,19 @@ spring:
   profiles:
     active:
     - sso
+  application:
+     name: dynamint-service
+  datasource:
+    url: jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA = (SID = XE)))
+    username: DYNAMINT
+    password: welcome
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  data:
+    rest:
+      base-path: api/v1
