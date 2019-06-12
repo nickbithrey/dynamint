@@ -25,26 +25,5 @@
 			<button onClick="logout()" class="btn btn-primary">Logout</button>
 		</div>
 	</div>
-	<p>Retrieved: <span id="channel"></span></p>
-	<!-- <script type="text/javascript" src="/webjars/js-cookie/js.cookie.js"></script> -->
-
-	<script type="text/javascript">
-		$.get("user", function(data) {
-			$("#user").html(data.name);
-			$(".unauthenticated").hide();
-			$(".authenticated").show();
-		});
-		var logout = function() {
-			$.post("logout", function() {
-				$("#user").html('');
-				$(".unauthenticated").show();
-				$(".authenticated").hide();
-			})
-			return true;
-		}
-		$.get("api/v1/channel", function(data) {
-			$("#channel").html(data.name);
-		})
-	</script>
 </body>
 </html>
