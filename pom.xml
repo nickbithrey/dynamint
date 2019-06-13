@@ -17,6 +17,18 @@
 	<build>
 		<outputDirectory>target/classes</outputDirectory>
 	</build>
+	
+	<repositories>
+		<repository>
+			<id>spring</id>
+			<name>spring-release</name>
+			<url>http://repo.spring.io/plugins-release/</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</repository>
+	</repositories>
 
 	<dependencyManagement>
 		<dependencies>
