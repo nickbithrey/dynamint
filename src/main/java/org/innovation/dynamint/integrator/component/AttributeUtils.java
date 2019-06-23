@@ -1,11 +1,13 @@
-package org.innovation.dynamint.channel;
+package org.innovation.dynamint.integrator.component;
+
+import org.innovation.dynamint.compconfig.ComponentConfigurationAttribute;
 
 public class AttributeUtils {
 
     private AttributeUtils() {
     }
 
-    public static final Attribute createAttr(Component c, ModelAttribute modelAttribute, Object value) {
+    public static final Attribute createAttr(Component c, ComponentConfigurationAttribute modelAttribute, Object value) {
         Attribute a = new Attribute(modelAttribute, c);
         setAttrValue(a, value);
         return a;

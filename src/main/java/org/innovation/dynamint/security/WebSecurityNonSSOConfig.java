@@ -10,15 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-@Profile("!sso")
+@Profile("!" + SSOConfig.PROFILE)
 public class WebSecurityNonSSOConfig extends WebSecurityConfigurerAdapter {
-
-    private static final String PROFILE = "sso";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebSecurityNonSSOConfig.class);
 
     public WebSecurityNonSSOConfig() {
-        LOGGER.warn("Initializing in unsecured mode as profile '{}' is not enabled", PROFILE);
+        LOGGER.warn("Initializing in unsecured mode as profile '{}' is not enabled", SSOConfig.PROFILE);
     }
 
     @Override

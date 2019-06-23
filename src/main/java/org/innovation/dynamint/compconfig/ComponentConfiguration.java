@@ -1,4 +1,4 @@
-package org.innovation.dynamint.channel;
+package org.innovation.dynamint.compconfig;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -12,21 +12,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.data.rest.core.annotation.RestResource;
 
 @Entity
-@Table(name = "model_component")
-public class ModelComponent {
+@Table(name = "component_config")
+public class ComponentConfiguration {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     private String reference;
 
+    @NotNull
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<ModelAttribute> attributes = new HashSet<>();
+    @NotNull
+    private String componentType;
+
+    @RestResource(exported = false)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "componentConfiguration")
+    private Set<ComponentConfigurationAttribute> attributes = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -52,20 +61,30 @@ public class ModelComponent {
         this.description = description;
     }
 
-    public Set<ModelAttribute> getAttributes() {
+    public Set<ComponentConfigurationAttribute> getAttributes() {
         return Collections.unmodifiableSet(attributes);
     }
 
-    public boolean addAttribute(ModelAttribute a) {
+    public boolean addAttribute(ComponentConfigurationAttribute a) {
+        a.setComponentConfiguration(this);
         return attributes.add(a);
     }
 
-    public boolean removeAttribute(ModelAttribute a) {
+    public boolean removeAttribute(ComponentConfigurationAttribute a) {
+        a.setComponentConfiguration(null);
         return attributes.remove(a);
     }
 
-    protected void setAttributes(Set<ModelAttribute> attributes) {
+    protected void setAttributes(Set<ComponentConfigurationAttribute> attributes) {
         this.attributes = attributes;
+    }
+
+    public String getComponentType() {
+        return componentType;
+    }
+
+    public void setComponentType(String componentType) {
+        this.componentType = componentType;
     }
 
 }

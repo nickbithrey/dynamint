@@ -1,4 +1,4 @@
-package org.innovation.dynamint.channel;
+package org.innovation.dynamint.integrator.component;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,7 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.innovation.dynamint.compconfig.ComponentConfigurationAttribute;
 import org.springframework.lang.NonNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "attribute")
@@ -19,19 +22,20 @@ public class Attribute {
     private Long id;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private ModelAttribute modelAttribute;
+    private ComponentConfigurationAttribute configurationAttribute;
 
     private String value;
 
     @NonNull
+    @JsonIgnore
     @ManyToOne(optional = false)
     private Component component;
 
     protected Attribute() {
     }
 
-    public Attribute(ModelAttribute modelAttribute, Component component) {
-        this.modelAttribute = modelAttribute;
+    public Attribute(ComponentConfigurationAttribute configurationAttribute, Component component) {
+        this.configurationAttribute = configurationAttribute;
         this.component = component;
     }
 
@@ -43,12 +47,12 @@ public class Attribute {
         this.id = id;
     }
 
-    public ModelAttribute getModelAttribute() {
-        return modelAttribute;
+    public ComponentConfigurationAttribute getConfigurationAttribute() {
+        return configurationAttribute;
     }
 
-    public void setModelAttribute(ModelAttribute modelAttribute) {
-        this.modelAttribute = modelAttribute;
+    public void setConfigurationAttribute(ComponentConfigurationAttribute configurationAttribute) {
+        this.configurationAttribute = configurationAttribute;
     }
 
     public String getValue() {

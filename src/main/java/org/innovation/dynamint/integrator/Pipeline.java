@@ -1,4 +1,4 @@
-package org.innovation.dynamint.channel;
+package org.innovation.dynamint.integrator;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,8 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.innovation.dynamint.integrator.component.Component;
 import org.springframework.lang.NonNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -29,6 +31,7 @@ public class Pipeline {
     private Component component;
 
     @NonNull
+    @JsonIgnore
     @OneToOne(mappedBy = "pipeline")
     private Integrator integrator;
 

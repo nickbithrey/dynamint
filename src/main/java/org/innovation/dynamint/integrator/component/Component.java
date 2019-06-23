@@ -1,4 +1,4 @@
-package org.innovation.dynamint.channel;
+package org.innovation.dynamint.integrator.component;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -15,7 +15,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.innovation.dynamint.compconfig.ComponentConfiguration;
+import org.innovation.dynamint.integrator.BaseEntity;
+import org.innovation.dynamint.integrator.Pipeline;
+import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.lang.NonNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "component")
@@ -30,23 +36,25 @@ public class Component implements BaseEntity {
 
     private String description;
 
+    @RestResource(exported = true)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private ModelComponent modelComponent;
+    private ComponentConfiguration componentConfiguration;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "component")
     private Set<Attribute> attributes = new HashSet<>();
 
     @NonNull
+    @JsonIgnore
     @OneToOne(mappedBy = "component")
     private Pipeline pipeline;
 
     protected Component() {
     }
 
-    public Component(String reference, String description, ModelComponent modelComponent, Pipeline pipeline) {
+    public Component(String reference, String description, ComponentConfiguration modelComponent, Pipeline pipeline) {
         this.reference = reference;
         this.description = description;
-        this.modelComponent = modelComponent;
+        this.componentConfiguration = modelComponent;
         this.pipeline = pipeline;
     }
 
@@ -75,12 +83,12 @@ public class Component implements BaseEntity {
         this.description = description;
     }
 
-    public ModelComponent getModelComponent() {
-        return modelComponent;
+    public ComponentConfiguration getComponentConfiguration() {
+        return componentConfiguration;
     }
 
-    public void setModelComponent(ModelComponent modelComponent) {
-        this.modelComponent = modelComponent;
+    public void setComponentConfiguration(ComponentConfiguration componentConfiguration) {
+        this.componentConfiguration = componentConfiguration;
     }
 
     public Set<Attribute> getAttributes() {

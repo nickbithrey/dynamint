@@ -1,4 +1,4 @@
-package org.innovation.dynamint.channel;
+package org.innovation.dynamint.integrator;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
