@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@(DESCRIPTION=(ENABLE=BROKEN)(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA = (SERVICE_NAME = XEPDB1)))
+    username: DYNAMINT
+    password: welcome
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    
